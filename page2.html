@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="page2.css">
+</head>
+<body>
+  <div class="container">
+    <div class="background-container">
+      <h1 class="background-text">MORE INFO?</h1>
+    </div>
+
+    <div class="form-container" id="form">
+      <form id="contact-form">
+        <p>Hello! My name is 
+          <input type="text" id="name" placeholder="Name" class="input">
+          and I work as a 
+          <input type="text" id="role" placeholder="Role" class="input">
+          in 
+          <input type="text" id="company" placeholder="Company" class="input">
+        </p>
+
+        <p>And I want to have more information about
+          <select id="select" class="select-input">
+            <option value="" disabled selected>Select Option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+        </p>
+
+        <p>I would like some help in
+          <input type="text" id="help" placeholder="Tell us more" class="full-input">
+        </p>
+
+        <p>I work in the following sector: 
+          <span class="radio">
+            <label><input type="radio" name="sector" value="Startup"> Startup</label>
+            <label><input type="radio" name="sector" value="Sports"> Sports</label>
+            <label><input type="radio" name="sector" value="Health"> Health</label>
+          </span>
+        </p>
+
+        <p>Contact me at 
+          <input type="email" id="email" placeholder="Type your email" class="full-input1">
+        </p>
+
+        <button type="button" id="button" class="button">SEND</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('button').addEventListener('click', function() {
+      var name = document.getElementById('name').value;
+      var role = document.getElementById('role').value;
+      var company = document.getElementById('company').value;
+      var select = document.getElementById('select').value;
+      var help = document.getElementById('help').value;
+      var email = document.getElementById('email').value;
+      var sector = document.querySelector('input[name="sector"]:checked');
+
+      var errorMessages = [];
+
+      if (!name) errorMessages.push('Please enter your name.');
+      if (!role) errorMessages.push('Please enter your role.');
+      if (!company) errorMessages.push('Please enter your company.');
+      if (!select) errorMessages.push('Please select an option about the information.');
+      if (!help) errorMessages.push('Please tell us more about how we can help.');
+      if (!email || !Email(email)) errorMessages.push('Please enter a valid email.');
+      if (!sector) errorMessages.push('Please select a sector.');
+
+      if (errorMessages.length > 0) {
+        alert(errorMessages.join('\n'));
+        return;
+      }
+
+      var formBox = document.getElementById('form');
+      formBox.innerHTML = '<p>Thank you for contacting us!<br>Your message has been received.<br>We will get back to you as soon as possible.</p>';
+    });
+
+    function Email(email) {
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  </script>
+</body>
+</html>

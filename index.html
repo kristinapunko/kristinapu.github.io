@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span><img src="logo.png" alt="Weavely Logo" class="logo">weavely</span>
+      <img src="youtube.png" alt="You Tube" class="foto">
+      <h1>👋 Welcome to your Component Library</h1>
+      <div class="main-text">
+        <div class="left-text">
+          <p><span>But what's a Component?</span><br>It is the "master" version of an element.<br>
+            Any changes you make here will<br>automatically apply to all its copies.<br><br>
+            But remember, this only works one way:<br><span>If you change a copy, it won't affect<br>the master or other copies.</span></p>
+        </div>
+        <div class="right-text">
+          <span>Feel free to modify your Component<br>Library as you need and watch your<br>whole design update automatically.</span>
+        </div>
+        <img src="arr.png" alt="стрілка" class="arr">
+      </div>
+    </header>
+  </div>
+  
+  <div class="container">
+    <form id="componentForm">
+      <div class="containers">
+        <div class="headers">
+            <span class="arrow">➤  </span> Submit Button
+        </div>
+        <div class="body">
+          <button type="button" onclick="Form()" class="button">SEND</button>
+        </div>
+      </div>
+      <div class="containers">
+        <div class="headers">
+            <span class="icon"><img src="AB.png" class="icons"></span> Short answer
+        </div>
+        <div class="body">
+            <input type="text" id="answer" placeholder="Type here..." class="answer">
+            <small id="answerError" style="color:red; display:none;">Please fill out this field.</small>
+        </div>
+      </div>
+      <div class="containers">
+        <div class="headers">
+            <span class="icon"><img src="list.png" class="icons"></span> Dropdown
+        </div>
+        <div class="body">
+            <select id="dropdown" class="dropdown-list">
+                <option value="" disabled selected>Select Option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <small id="dropdownError" style="color:red; display:none;">Please select an option.</small>
+        </div>
+      </div>
+      <div class="containers">
+        <div class="headers">
+            <span class="icon"><img src="options.png" class="icons"></span> Radio Buttons
+        </div>
+        <div class="radio-buttons-body">
+            <div class="radio">
+                <label class="radio-button">
+                    <input type="radio" name="options" value="1"> Option 1
+                </label>
+                <label class="radio-button">
+                    <input type="radio" name="options" value="2"> Option 2
+                </label>
+                <label class="radio-button">
+                    <input type="radio" name="options" value="3"> Option 3
+                </label>
+            </div>
+            <small id="radioError" style="color:red; display:none;">Please select a radio option.</small>
+            <div class="radio-column">
+                <label class="column radio-color-1">
+                    <input type="radio" name="radioColumn" value="1"> Radio
+                </label>
+                <label class="column radio-color-2">
+                    <input type="radio" name="radioColumn" value="2"> Radio
+                </label>
+                <label class="column radio-color-3">
+                    <input type="radio" name="radioColumn" value="3" checked> Radio
+                </label>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function Form() {
+      let a = true;
+
+      const answer = document.getElementById("answer").value;
+      const answerError = document.getElementById("answerError");
+      if (answer === "") {
+        answerError.style.display = "block";
+        a = false;
+      } else {
+        answerError.style.display = "none";
+      }
+
+      const dropdown = document.getElementById("dropdown").value;
+      const dropdownError = document.getElementById("dropdownError");
+      if (dropdown === "") {
+        dropdownError.style.display = "block";
+        a = false;
+      } else {
+        dropdownError.style.display = "none";
+      }
+
+      const radioButtons = document.getElementsByName("options");
+      let radioSelected = false;
+      for (let i = 0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+          radioSelected = true;
+          break;
+        }
+      }
+      const radioError = document.getElementById("radioError");
+      if (!radioSelected) {
+        radioError.style.display = "block";
+        a = false;
+      } else {
+        radioError.style.display = "none";
+      }
+
+      if (a) {
+        window.location.href = "page2.html";
+      }
+      return false; 
+    }
+  </script>
+</body>
+</html>
