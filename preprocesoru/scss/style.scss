@@ -1,0 +1,869 @@
+$f-color:  #44454d;
+$m-color: white;
+$hover-color:darkgray;
+$border-color:#ccc;
+$b-color:#4884b4;
+$filter-bg-color: #ffffff;
+$container-bg-color: #fff;
+$sub-container-bg-color: #f0f2f5;
+@mixin flex($display: flex, $justify: center, $align: center) {
+  display: $display;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin container($width: 90%) {
+  width: $width;
+  margin: 0 auto;
+}
+
+@mixin text-style($weight: 600, $size: 16px, $transform: uppercase) {
+  font-weight: $weight;
+  font-size: $size;
+  text-transform: $transform;
+}
+@mixin text-clamp() {
+  font-size: 1.125rem;
+  line-height: 1.5em;
+  max-height: 3em; 
+  white-space: normal; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
+}
+
+button, a {
+  cursor: pointer;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color:#f8f9fa;
+    font-family: Montserrat, sans-serif;
+  }
+  .header {
+    background-color: $f-color;
+    @include flex;
+    padding: 5px 20px;
+  
+    .container {
+      @include container();
+      @include flex($justify: space-between);
+    }
+  
+    img {
+      width: 5%;
+    }
+    .button-container {
+      @include flex;
+      flex-grow: 1;
+  
+      a {
+        text-decoration: none;
+        padding: 0 10px;
+        background-color:$f-color;
+        border: none;
+        transition: background-color 0.3s, color 0.3s;
+        @include text-style($weight: unset);
+        color:$m-color;
+        margin: 0 10px;
+        text-decoration: none;
+  
+        &:hover {
+          color: $hover-color;
+        }
+      }
+    }
+    .menu {
+      position: relative; // Для правильного позиціювання меню
+      display: none;
+  
+      // Сховуємо чекбокс
+      .menu-checkbox {
+          display: none;
+      }
+  
+      .menu-button {
+          background: $f-color;
+          color: $m-color;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          font-size: 16px;
+          border-radius: 4px;
+          outline: none;
+      }
+  
+      .dropdown {
+          display: none; // Ховаємо меню за замовчуванням
+          position: absolute; // Випадаюче меню
+          top: 100%; // Розмістити нижче кнопки
+          right: 0;
+          background: $f-color;
+          border-radius: 4px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 0;
+          list-style: none;
+          z-index: 10;
+  
+          li {
+              padding: 10px;
+              border-bottom: 1px solid #eee;
+  
+              &:last-child {
+                  border-bottom: none;
+              }
+
+  
+              a {
+                  text-decoration: none;
+                  color: $m-color;
+
+              }
+          }
+      }
+  
+      // Відображаємо меню, якщо чекбокс активний
+      .menu-checkbox:checked ~ .dropdown {
+          display: block;
+      }
+  }
+  
+    p {
+      margin: 0;
+      color: $m-color;
+      font-size: 16px;
+    }
+  }
+  
+  .photo-header {
+    @include container();
+    text-align: center;
+  
+    h2 {
+      @include text-style($size:1.5rem);
+      margin-bottom: 10px;
+      color: $f-color;
+    }
+  
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color:$f-color;
+      margin: 0 auto 20px auto;
+    }
+  
+    .photo-carousel {
+      position: relative;
+      @include container(100%);
+      max-width: 100%;
+      height: 450px;
+      min-height: 220px;
+      overflow: hidden;
+  
+      .photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        animation: slide 9s infinite;
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+  
+      .photo:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .photo:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .photo:nth-child(3) {
+        animation-delay: 6s;
+      }
+    }
+  }
+  
+  @keyframes slide {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .filter-group {
+    margin-bottom: 20px;
+    background-color: $sub-container-bg-color; /* Сірий фон для кожної групи фільтрів */
+    padding: 15px;
+    border-radius: 5px;
+
+    h4 {
+      font-size: 1.2em;
+      margin: 5px;
+    }
+
+    label {
+      display: flex;
+      padding: 5px 0;
+      font-size: 1em;
+
+      input[type="checkbox"] { 
+        appearance: none; 
+        width: 15px; 
+        height: 15px; 
+        border: 2px solid $f-color; 
+        outline: none; 
+        cursor: pointer; 
+        transition: background-color 0.3s, 
+        border-color 0.3s; 
+        margin-right: 10px; 
+      } 
+      input[type="checkbox"]:checked { 
+        border-color:  #2596be; 
+        position: relative; 
+      } 
+      input[type="checkbox"]:checked::after { 
+        content: '✓'; 
+        color:  #2596be; 
+        font-size: 10px; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); }
+    }
+  }
+  .filter-group {
+    h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+
+  .price-range-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    border: 3px solid #DEE2E6;
+    td {
+      text-align: center; 
+      padding: 5px;
+      background-color:  #DEE2E6;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px 0;
+      border: none;
+    }
+    
+     td:nth-child(4) {
+      @include text-style($transform: unset);
+      background-color:  #DEE2E6;
+    }
+  }
+  .filter-buttons {
+    @include flex;
+    gap: 15px;
+}
+
+.filter-apply, .filter-reset {
+width: 48%;
+padding: 10px 0;
+border: none; 
+cursor: pointer;
+text-align: center;
+}
+.filter-apply {
+background-color:$b-color;
+color:$m-color;
+transition: background-color 0.3s; 
+}
+.filter-apply:hover {
+background-color: $b-color; 
+}
+
+.filter-reset {
+color: $b-color;
+background-color: $filter-bg-color;
+}
+
+.filter-reset:hover {
+color: #aaa; 
+}
+.conteiner-page {
+  margin-top: 10px;
+  @include container();
+  align-items: center;
+
+  .foto-block {
+    @include flex($justify: unset, $align: unset);
+  }
+  .filter {
+    width: 100%;
+    max-width: 300px;
+    height: calc(100% + 5px); 
+    padding: 20px;
+    background-color: $filter-bg-color;
+    color: #3e3e3e;
+    .img {
+      @include flex;
+      gap: 10px;
+
+      img {
+        width: 10%;
+      }
+
+      h3 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .foto-block {
+      display: block; 
+      width: 90%;
+      margin: 0 auto;
+    }
+    .filter {
+      display: block;
+      margin-top: 20px; 
+      padding: 15px;
+      height: auto; 
+    }
+    .container {
+      margin-top: 20px; 
+    }
+  }
+}
+
+.container {
+  padding: 10px;
+  @include flex($justify: unset, $align: unset);
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.container-product {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333%); 
+  height: auto;
+  background-color: $container-bg-color;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .name-container {
+    @include container(95%);
+    height: 65px;
+    text-align: left;
+    overflow: hidden; 
+    a {
+      display: block; 
+      height: 100%;
+      font-weight: 600;
+      color: $f-color;
+      text-decoration: none; 
+      transition: background-color 0.3s ease, color 0.3s ease; 
+      @include text-clamp();
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    p {
+      @include text-clamp();
+    }
+  }
+}
+.price {
+  @include text-style(blod,20 ,unset);
+  color: $f-color;
+  display: inline-flex; 
+  align-items: center;
+
+  small {
+    text-decoration: line-through;
+    margin-left: 10px;
+    padding: 0 5px;
+  }
+}
+    @media (max-width: 768px) {
+      .conteiner-page {
+          width: 100%; 
+        }
+    
+      .container-product {
+        flex: 1 1 calc(45% - 5px); 
+        max-width: calc(47%);
+       
+      }
+    }
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: $m-color;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row; 
+  z-index: 1; 
+}
+
+.badge-new {
+  background-color: rgb(141, 47, 47);
+}
+
+.badge-top {
+  background-color: rgb(36, 131, 37);
+}
+
+.badge-sale {
+  background-color:$b-color;
+}
+
+.product {
+  position: relative; 
+
+}
+    .product-button {
+      background-color: $m-color;
+      padding: 15px 10px;
+      font-size: 1.1em;
+      border: 2px solid $b-color; 
+      color: $b-color; 
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease; 
+      .details {
+        text-decoration: none;
+        color: $b-color; ;
+      }
+      
+    }
+    
+    .product-button:hover {
+      background-color:$b-color;
+    }
+    .details:hover{
+      color:$m-color; 
+    }
+.img-container {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 2fr; 
+  gap: 20px;
+  width: 90%;
+  margin: 20px auto;
+
+  .product-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .photo-carousel {
+    @include flex;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .carousel-image-container {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .product-details {
+    @include flex($justify: space-between, $align: unset);
+    flex-direction: column;
+
+    .product-name {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: $f-color;
+    }
+
+    .product-rating {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+
+      .star {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .capaciti-conteiner {
+      width: 60px;
+      padding: 10px;
+      background-color: #a4b5c3;
+      text-align: center;
+      border: 1px solid #000;
+    }
+
+    .product-description {
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto; 
+    grid-template-areas:
+      "thumbnails photo-carousel"
+      "product-details product-details";
+
+    .product-thumbnails {
+      grid-area: thumbnails;
+    }
+
+    .photo-carousel {
+      grid-area: photo-carousel;
+    }
+
+    .product-details {
+      grid-area: product-details;
+      width: 100%; // Займає всю ширину
+      padding-top: 20px;
+    }
+  }
+}
+
+.info-container-wrapper {
+  width: 80%; 
+  margin: 20px auto; 
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+  max-width: 100%; 
+
+  .info-container {
+    @include flex($justify: unset);
+    gap: 10px;  
+    box-sizing: border-box;  
+    border: 1px solid #829cb1;
+    padding: 10px;
+    flex: 1;  
+ 
+    .content {
+      display: flex;
+      flex-direction: column;  
+
+      .title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 5px;  
+        color: $f-color;
+      }
+
+      .description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #555;
+      }
+    }
+  }
+}
+ 
+.our-shops{
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 5px;  
+  color:$f-color;
+}
+.shop-container {
+  width: 90%;  
+  margin: 20px auto;  
+  @include flex($justify: unset);
+  flex-direction: column;
+
+  main {
+    padding: 0;
+    width: 100%;  
+  }
+
+  .locations {
+    margin-bottom: 40px;
+    @include flex($justify: space-between, $align: unset);
+    flex-wrap: wrap;
+  }
+
+  .city-card {
+    width: 20%;  
+    height: auto;
+    margin: 10px;  
+    border: 2px solid $border-color;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background-color: $m-color;
+
+    .city-image {
+      width: 100%;
+      height: auto;  
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  
+      }
+    }
+     .city-info {
+      padding: 15px;
+      text-align: center;
+
+      h3 {
+        font-size: 1.3rem;
+        color: $b-color;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 5px;
+          font-size: 1rem;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+.contact-form {
+  width: 70%;
+  background-color: #f0f2f5; 
+  padding: 10px;  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
+  margin: 20px auto; 
+
+  form {
+    @include flex($justify: unset);
+    flex-direction: column;
+    gap: 15px;
+
+    label {
+      font-weight: bold;
+      font-size: 1rem;
+      color:$f-color;
+    }
+
+    input,
+    textarea,
+    button {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid $border-color;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 900px; 
+
+      &::placeholder {
+        color: #888; 
+      }
+    }
+
+    button {
+      background-color: $b-color;
+      color: $m-color;
+      border: none;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $b-color;
+      }
+    }
+  }
+  }
+ 
+@media (max-width: 1024px) {
+  .our-shops{
+    font-size: 2rem;
+
+  }
+
+  .shop-container {
+    @include container(95%);
+    .city-card {
+      width: 45%; 
+      height: auto;
+      margin: 5px;
+      .city-info {
+        padding: 5px;
+        h3 {
+          font-size: 1rem;
+          margin-bottom: 5px;
+        }
+      
+      }
+}
+}
+}
+footer {
+  background-color: $f-color;
+  padding: 20px;
+  text-align: left;
+  color: $m-color;
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px; // Відступи між колонками
+    max-width: 1200px; // Максимальна ширина
+    margin: 0 auto; // Центрування контейнера
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: $m-color;
+        text-transform: uppercase;
+        margin: 1.5rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin: 5px;
+
+          a {
+            font-size: 1rem;
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+
+            img {
+              width: 10%;
+              padding: 0 10px;
+              color: $m-color;
+            }
+
+            &:hover {
+              color: $b-color;
+            }
+          }
+        }
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: 1rem;
+        font-family: Montserrat, sans-serif;
+        font-weight: 400;
+        text-align: left;
+
+        a {
+          font-size: 1rem;
+          font-family: Montserrat, sans-serif;
+          font-weight: 400;
+          text-decoration: none;
+          color: $m-color;
+          transition: color 0.3s;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 20px;
+  }
+
+  // Адаптивність для маленьких екранів
+  @media (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: 1fr; // Всі колонки по черзі
+    }
+    
+  }
+}
+
+
+
+  @media (max-width: 1024px) {
+    .header .button-container {
+      display: none; 
+  }
+  .header  img{
+    width: 10%;
+  }
+  .header .menu {
+      display: inline-block;
+    }
+    .menu-button {
+      display: block; /* Показуємо бургер-меню */
+    }
+ 
+  
+    .container-product {
+      flex: 1 1 1 100%; /* Продукти займають всю ширину */
+    }
+  }
+  

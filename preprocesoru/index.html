@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header"> 
+    <div class="container"> 
+      <img src="images/logomak.png" alt="Логотип"> 
+      <div class="button-container"> 
+        <a href="shops.html">Наші Магазини</a> 
+        <a href="promotion.html">Акції</a> 
+      </div> 
+      <p>+380 098 456 4545</p> 
+      <div class="menu">
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <label for="menu-toggle" class="menu-button">☰</label>
+        <ul class="dropdown">
+            <li><a href="shops.html">Наші Магазини</a></li>
+            <li><a href="promotion.html">Акції</a></li>
+            <p>+380 098 456 4545</p>
+        </ul>
+    </div>
+       
+      </div> 
+    </header>
+  
+
+  <div class="photo-header">
+    <h2>Нова ера догляду за шкірою</h2>
+    <div class="line"></div>
+    <div class="photo-carousel">
+      <div class="photo">
+        <img src="images/f1.jpg" alt="Фото 1">
+      </div>
+      <div class="photo">
+        <img src="images/f2.jpg" alt="Фото 2">
+      </div>
+      <div class="photo">
+        <img src="images/а3.jpg" alt="Фото 3">
+      </div>
+    </div>
+  </div>
+  
+    <div class="conteiner-page"><div class="foto-block">
+        <div class="filter">
+          <div class="img"> 
+            <img src="images/filter.png"><h3>Фільтр</h3>
+          </div>
+      
+          <!-- Фільтр типу шкіри -->
+          <div class="filter-group">
+            <h4>Тип/стан шкіри</h4>
+            <label><input type="checkbox" value="Комбінована"> Комбінована</label>
+            <label><input type="checkbox" value="Жирна"> Жирна</label>
+            <label><input type="checkbox" value="Суха"> Суха</label>
+            <label><input type="checkbox" value="Нормальна"> Нормальна</label>
+            <label><input type="checkbox" value="Акне"> Акне</label>
+            <label><input type="checkbox" value="Постакне"> Постакне</label>
+          </div>
+      
+          <!-- Фільтр призначення -->
+          <div class="filter-group">
+            <h4>Вид</h4>
+            <label><input type="checkbox" value="Демакіяж"> Сироватка</label>
+            <label><input type="checkbox" value="Очищення"> Тонер</label>
+            <label><input type="checkbox" value="Відлущення"> Спрей</label>
+            <label><input type="checkbox" value="Тонізація"> Крем</label>
+          </div>
+      
+          <!-- Фільтр ціни -->
+          <div class="filter-group">
+            <h4>Ціна</h4>
+            <table class="price-range-table">
+              <tr>
+                <td><input type="number" id="min-price" value="200"></td>
+                <td>-</td>
+                <td><input type="number" id="max-price" value="2000"></td>
+                <td>₴</td>
+              </tr>
+            </table>
+          </div>
+          
+          <button type="button" class="filter-reset">Скасувати</button>
+          <button type="button" class="filter-apply">Вибрати</button>
+          
+        </div>
+
+
+        <div class="container"> <!-- Продукти -->
+          <div class="container-product">
+            <div class="product">
+              <div class="badge badge-new">Новинка</div>
+              <img src="images/sirovatka-green-retinol-serum-1-800x800.webp" alt="">
+              <div class="name-container">
+                <a href="product.html">Сироватка вапрол з ретинолом green retinol serum</a>
+              </div>
+              <div class="name-container">
+                <p>Сироватка для обличчя з інкапсульованим ретинолом...</p>
+              </div>
+              <p class="price">
+                <small></small>110999 ₴
+              </p>
+              <button class="product-button"><a href="product.html" class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+          <div class="container-product">
+            <div class="product">
+              <div class="badge badge-sale">Акція</div>
+              <img src="images/alt_sirovatka-green-barrier-serum-4-400x400.webp" alt="">
+              <div class="name-container">
+                <a href="p2.html">Сироватка green barrier serum</a>
+              </div>
+              <div class="name-container">
+                <p>Відновлююча сироватка для обличчя. Сироватка глибоко відновлює та зволожує шкіру.</p>
+              </div>
+              <p class="price">
+                <small>750 ₴</small>600 ₴
+              </p>
+              <button class="product-button"><a href="p2.html"  class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+
+          <div class="container-product">
+            <div class="product">
+              <div class="badge badge-top">Топ продажів</div>
+              <img src="images/spf-50-pa-uvb-uva-mist-sunscreen-19-400x400.webp" alt="">
+              <div class="name-container">
+                <a href="p3.html">Спрей SPF 50+ PA++++ UVB+UVA mist sunscreen</a>
+              </div>
+              <div class="name-container">
+                <p>Спрей білого кольору для обличчя та тіла. </p>
+              </div>
+              <p class="price">
+                <small></small>940 ₴
+              </p>
+              <button class="product-button"><a href="p3.html"  class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+          <div class="container-product">
+            <div class="product">
+              <img src="images/toner-vit-c-2-400x400.webp" alt="">
+              <div class="name-container">
+                <a href="p4.html">Тонер vit c</a>
+              </div>
+              <div class="name-container">
+                <p>Сяючий тонер для обличчя з віт. С</p>
+              </div>
+              <p class="price">
+                <small></small>890
+                 ₴
+              </p>
+              <button class="product-button"><a href="p4.html"  class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+          <div class="container-product">
+            <div class="product">
+              <img src="images/krem-magnolia-5-400x400.webp" alt="">
+              <div class="name-container">
+                <a href="p5.html">Крем magnolia+</a>
+              </div>
+              <div class="name-container">
+                <p>Потужне природне і не травматичне лікування жирної та проблемної шкіри - основна дія лінійки MAGNOLIA +.</p>
+              </div>
+              <p class="price">
+                <small></small>850 ₴
+              </p>
+              <button class="product-button"><a href="p5.html"  class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+          <div class="container-product">
+            <div class="product">
+              <img src="images/krem-fresh-glance-6-400x400.webp" alt="">
+              <div class="name-container">
+                <a href="p6.html">Крем fresh glance</a>
+              </div>
+              <div class="name-container">
+                <p>Крем для зволоження шкіри навколо очей, зменшення набряків та темних кіл. Має дренажний та судинноукріплюючий ефекти.</p>
+              </div>
+              <p class="price">
+                <small></small>680 ₴
+              </p>
+              <button class="product-button"><a href="p6.html"  class="details">Детальніше</a></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</div>
+      <footer>
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>Меню</h3>
+            <ul>
+              <li><a href="#">Про нас</a></li>
+              <li><a href="#">Наш магазин</a></li>
+              <li><a href="#">Акції</a></li>
+              <li><a href="#">Доставка та оплата</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Зв'язок</h3>
+            <p>Телефон: <a href="tel:+123456789">+1 234 567 89</a></p>
+            <p>Email: <a href="mailto:contact@eco-prof-cosmetics.com">contact@eco-prof-cosmetics.com</a></p>
+          </div>
+          <div class="footer-column">
+            <h3>Месенджери</h3>
+            <ul>
+              <li><a href="#"><img src="images/5335781_camera_instagram_social media_instagram logo_icon.png" alt="">WhatsApp</a></li>
+              <li><a href="#"><img src="images/8666462_telegram_icon.png" alt="">Telegram</a></li>
+              <li><a href="#"><img src="images/8547136_viber_icon.png" alt="">Viber</a></li>
+            </ul>
+          </div>
+        </div><hr>
+        <p>&copy; eco.prof.cosmetics 2016-2024</p>
+      </footer>
+      
+
+
+      
+
+      
+    
+</body>
+</html>
